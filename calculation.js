@@ -15,7 +15,7 @@ const vm = new Vue({
                 direction: "ltr",
             },
             // is_computing: false,
-            limit: [1, 10], // 每一操作数生成的数字范围
+            limit: [-10, 10], // 每一操作数生成的数字范围
             num: 10,//操作数
             cal_result: "", // 计算结果
             oper: ["+", "-", "*", "/"],
