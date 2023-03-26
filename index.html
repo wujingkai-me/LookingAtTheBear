@@ -84,6 +84,7 @@
               placeholder="请输入内容"
               v-model="cal_result"
               class="res"
+              ref="input"
               @change="verification(cal_result)">
               <template slot="append">计算结果</template>
             </el-input>

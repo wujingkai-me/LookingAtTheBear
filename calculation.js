@@ -13,7 +13,7 @@ const vm = new Vue({
             // is_computing: false,
             limit: [1, 10], // 每一操作数生成的数字范围
             num: 10,//操作数
-            cal_result: 0, // 计算结果
+            cal_result: "", // 计算结果
             oper: ["+", "-", "*", "/"],
             max_opear: 5, // 最大操作数
             oper_nums: [],
@@ -75,7 +75,8 @@ const vm = new Vue({
                 });
                 this.count.all_count += 1;
             }
-            this.cal_result = 0;
+            this.cal_result = "";
+            this.$refs.input.focus();
 
         },
         // 生成4个随机数作为算子
@@ -119,6 +120,7 @@ const vm = new Vue({
                     this.restart_generate();
 
             }, 1)
+            this.$refs.input.focus();
             // if(eval(compu) != parseInt(eval(compu))){
             //     // console.log(eval(compu));
             //     this.restart_generate();
