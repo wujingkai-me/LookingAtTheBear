@@ -120,7 +120,7 @@ const vm = new Vue({
             this.oper_char = this.generate_char(require);
             setTimeout(()=>{
                 const compu = this.$refs.comput.innerText;
-                if(eval(compu) != Math.ceil(eval(compu)))
+                if(eval(compu) != Math.ceil(eval(compu) && eval(compu) != Infinity))
                     // this.is_computing = true;
                     this.restart_generate();
 
