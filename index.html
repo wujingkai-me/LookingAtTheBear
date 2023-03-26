@@ -27,10 +27,9 @@
         <el-drawer
           title="设置面板"
           :visible.sync="drawer.drawer"
-          :direction="drawer.direction"
-          style="width: 70%">
+          :direction="drawer.direction">
           <div class="status">
-            <div class="switchs" style="width: 40%">
+            <div class="switchs">
               <el-switch
                 v-model="switch_isOn.plus"
                 active-color="#13ce66"
@@ -51,7 +50,7 @@
               </el-switch>
             </div>
             <el-divider></el-divider>
-            <div class="block" style="width: 90%">
+            <div class="block">
               <span class="demonstration"
                 ><b>算子数量</b>
                 <span
@@ -71,7 +70,8 @@
                 :step="1"
                 :min="2"
                 :max="5"
-                show-stops></el-slider>
+                show-stops
+                style="width: 70%"></el-slider>
             </div>
             <el-divider></el-divider>
             <span>

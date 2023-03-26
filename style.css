@@ -1,3 +1,6 @@
+:root {
+    font-size: 16px;
+}
 header {
     width: 100%;
     text-align: center;
@@ -14,6 +17,10 @@ header {
 .status {
     display: flex;
     flex-direction: column;
+}
+
+.switchs {
+    width: 100%;
 }
 
 .res  input {
@@ -42,6 +49,10 @@ header {
     
 }
 
+.el-drawer__container{
+    width: 100%;
+}
+
 .data {
     font-size: 4rem;
 }
@@ -61,6 +72,8 @@ header {
             margin: 0;
         }
         .el-drawer {
-            width: 120% !important;
+            /* width: 70% !important; */
+            width: auto !important;
+            /* transform: scale(0.8, 0.8); */
         }
 }
