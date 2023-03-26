@@ -10,6 +10,10 @@ const vm = new Vue({
                 current: 0,
                 all_count: 0
             },
+            drawer: {
+                drawer: false,
+                direction: "ltr",
+            },
             // is_computing: false,
             limit: [1, 10], // 每一操作数生成的数字范围
             num: 10,//操作数
@@ -18,6 +22,7 @@ const vm = new Vue({
             max_opear: 5, // 最大操作数
             oper_nums: [],
             oper_char: [],
+
             
         }
     },

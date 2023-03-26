@@ -15,30 +15,67 @@
     <header>Calculation Test</header>
     <main>
       <div id="app">
-        <div class="status">
-          <div class="switchs" style="width: 40%">
-            <el-switch
-              v-model="switch_isOn.plus"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="加法模式">
-            </el-switch>
-            <el-switch
-              v-model="switch_isOn.division"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="除法模式">
-            </el-switch
-            ><el-switch
-              v-model="switch_isOn.multiplication"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="乘法模式">
-            </el-switch>
-          </div>
-          <div class="block" style="width: 50%">
-            <span class="demonstration"
-              ><b>算子数量</b>
+        <el-button
+          type="primary"
+          icon="el-icon-setting"
+          @click="drawer.drawer = true"
+          >设置</el-button
+        >
+        <div class="counts">
+          答对：{{count.current}}/ <b>答错：{{count.all_count}}</b>
+        </div>
+        <el-drawer
+          title="设置面板"
+          :visible.sync="drawer.drawer"
+          :direction="drawer.direction"
+          style="width: 70%">
+          <div class="status">
+            <div class="switchs" style="width: 40%">
+              <el-switch
+                v-model="switch_isOn.plus"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="加法模式">
+              </el-switch>
+              <el-switch
+                v-model="switch_isOn.division"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="除法模式">
+              </el-switch
+              ><el-switch
+                v-model="switch_isOn.multiplication"
+                active-color="#13ce66"
+                inactive-color="#ff4949"
+                active-text="乘法模式">
+              </el-switch>
+            </div>
+            <el-divider></el-divider>
+            <div class="block" style="width: 90%">
+              <span class="demonstration"
+                ><b>算子数量</b>
+                <span
+                  style="
+                    padding: 2px 5px;
+                    display: inline-block;
+                    color: #067eb5;
+                    background-color: lightblue;
+                    border-radius: 3px;
+                  "
+                  >{{ max_opear }}</span
+                >
+                (在下一轮生效)</span
+              >
+              <el-slider
+                v-model="max_opear"
+                :step="1"
+                :min="2"
+                :max="5"
+                show-stops></el-slider>
+            </div>
+            <el-divider></el-divider>
+            <span>
+              只会出现
               <span
                 style="
                   padding: 2px 5px;
@@ -47,27 +84,18 @@
                   background-color: lightblue;
                   border-radius: 3px;
                 "
-                >{{ max_opear }}</span
-              >
-              (在下一轮生效)</span
-            >
-            <el-slider
-              v-model="max_opear"
-              :step="1"
-              :min="2"
-              :max="5"
-              show-stops></el-slider>
+                >{{num}}</span
+              >以内的数作算数
+            </span>
+            <br />
+            <el-input-number
+              v-model="num"
+              @change="number_change"
+              :min="10"
+              :step="10"></el-input-number>
           </div>
-          <el-input-number
-            v-model="num"
-            @change="number_change"
-            :min="10"
-            :step="10"
-            label="描述文字"></el-input-number>
-          <div class="counts">
-            答对：{{count.current}}/ <b>答错：{{count.all_count}}</b>
-          </div>
-        </div>
+        </el-drawer>
+
         <div class="container">
           <!-- <div v-show="is_computing">
             <img

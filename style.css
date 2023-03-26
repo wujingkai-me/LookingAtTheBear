@@ -37,6 +37,10 @@ header {
     margin: 0 auto;
     text-align: center;
 }
+.el-drawer {
+    padding: 20px;
+    
+}
 
 .data {
     font-size: 4rem;
@@ -48,12 +52,15 @@ header {
     justify-content: center;
     align-content: center;
 }
-@media screen and (max-width: 700px){
+@media screen and (max-width: 1200px){
         .status, .show {
             /* display: flex; */
             flex-direction: column;
         }
         .res {
             margin: 0;
+        }
+        .el-drawer {
+            width: 120% !important;
         }
 }
