@@ -10,49 +10,52 @@ const vm = new Vue({
                 current: 0,
                 all_count: 0
             },
+            // is_computing: false,
             limit: [1, 10], // 每一操作数生成的数字范围
+            num: 10,//操作数
             cal_result: 0, // 计算结果
             oper: ["+", "-", "*", "/"],
-            max_opear: 2, // 最大操作数
+            max_opear: 5, // 最大操作数
             oper_nums: [],
-            oper_char: []
+            oper_char: [],
             
         }
     },
-    computed: {
-        character: function() {
-            return this.rand(0, 3);
-        },
-        // // 操作数
-        // oper_nums: {
-        //     get() {
-        //         this.__opear_nums = this.generate_nums();
-        //         // return this.__opear_nums;
-        //     },
-        //     set(new_value) {
-        //         this.__opear_nums = new_value;
-        //     }
-        // },
-        // // 操作符
-        // oper_char: {
-        //     get(){
-        //         this.__opear_chars = this.generate_char()
-        //         // return this.b;
-        //     },
-        //     set(new_value){
-        //         this.__opear_chars = new_value;
-        //     }
-        // }
+    // computed: {
+    //     character: function() {
+    //         return this.rand(0, 3);
+    //     },
+    //     // // 操作数
+    //     // oper_nums: {
+    //     //     get() {
+    //     //         this.__opear_nums = this.generate_nums();
+    //     //         // return this.__opear_nums;
+    //     //     },
+    //     //     set(new_value) {
+    //     //         this.__opear_nums = new_value;
+    //     //     }
+    //     // },
+    //     // // 操作符
+    //     // oper_char: {
+    //     //     get(){
+    //     //         this.__opear_chars = this.generate_char()
+    //     //         // return this.b;
+    //     //     },
+    //     //     set(new_value){
+    //     //         this.__opear_chars = new_value;
+    //     //     }
+    //     // }
 
-    },
+    // },
     methods: {
         rand: function(n, m){
             return Math.floor(Math.random() * (m - n + 1)) + n;
         },
         verification: function(res){
             const content = this.$refs.comput.innerText
-            let result = eval(content)
-            console.log(result)
+            
+            let result = eval(content);
+            
             if(result == res) {
                 this.$message({
                     // title: '成功',
@@ -77,7 +80,7 @@ const vm = new Vue({
         },
         // 生成4个随机数作为算子
         generate_nums: function(max_opear=this.max_opear) {
-            let range = [1, 100];
+            let range = this.limit;
             let nums = [];
             for(let i = 0; i < max_opear; i++){
                 nums[i] = this.rand(range[0], range[1]); // 1-100的算子
@@ -91,11 +94,10 @@ const vm = new Vue({
                 lis = generate_list
             else
                 lis = this.oper
-            console.log(1, lis);
-            // let lis = this.oper_char
+
             let chars = [];
             for(let i = 0; i < this.max_opear - 1;i++) {
-                chars[i] = this.oper[this.rand(0, lis.length-1)];
+                chars[i] = lis[this.rand(0, lis.length-1)];
             }
             // chars.push("  ");
             
@@ -107,13 +109,29 @@ const vm = new Vue({
             if(this.switch_isOn.division) require.push("/")
             if(this.switch_isOn.multiplication) require.push("*")
 
+            
             this.oper_nums = this.generate_nums();
             this.oper_char = this.generate_char(require);
+            setTimeout(()=>{
+                const compu = this.$refs.comput.innerText;
+                if(eval(compu) != Math.ceil(eval(compu)))
+                    // this.is_computing = true;
+                    this.restart_generate();
+
+            }, 1)
+            // if(eval(compu) != parseInt(eval(compu))){
+            //     // console.log(eval(compu));
+            //     this.restart_generate();
+            // }
+
+        },
+        number_change: function() {
+            this.limit = [this.limit[0], this.num];
         }
     },
     mounted(){
         this.restart_generate();
-        this.oper_char = this.generate_char();
+        // this.oper_char = this.generate_char();
     }
 })
 
