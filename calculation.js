@@ -125,7 +125,7 @@ const vm = new Vue({
                     this.restart_generate();
 
             }, 1)
-            this.$refs.input.focus();
+            // this.$refs.input.focus();
             // if(eval(compu) != parseInt(eval(compu))){
             //     // console.log(eval(compu));
             //     this.restart_generate();
