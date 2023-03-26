@@ -105,7 +105,7 @@ const vm = new Vue({
             let require = new Array();
             if(this.switch_isOn.plus) require.push("+"), require.push("-")
             if(this.switch_isOn.division) require.push("/")
-            if(this.switch_isOn.multiplication) require.push("-")
+            if(this.switch_isOn.multiplication) require.push("*")
 
             this.oper_nums = this.generate_nums();
             this.oper_char = this.generate_char(require);
